@@ -108,7 +108,7 @@ class ArgumentCollection extends ArrayCollection {
 					$post = get_post();
 
 					$args[4] = date_i18n( __( 'M j, Y @ G:i',
-						'bn-custom-post-type' ),
+						'bn-custom-content' ),
 						strtotime( $post->post_date ) );
 
 					break;
