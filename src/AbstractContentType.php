@@ -19,6 +19,7 @@ use BrightNucleus\Config\ConfigTrait;
 use BrightNucleus\Config\Exception\FailedToProcessConfigException;
 use BrightNucleus\Contract\Registerable;
 use BrightNucleus\CustomContent\Exception\ReservedTermException;
+use BrightNucleus\Localization\LocalizationTrait;
 use Doctrine\Common\Collections\Collection;
 
 /**
@@ -31,11 +32,17 @@ use Doctrine\Common\Collections\Collection;
 abstract class AbstractContentType implements Registerable {
 
 	use ConfigTrait;
+	use LocalizationTrait;
 
 	/*
 	 * Key that stores default values.
 	 */
-	const DEFAULTS = '_cpt_defaults_';
+	const DEFAULTS = '_bn_custom_content_defaults_';
+
+	/*
+	 * Reserved terms that cannot be used as custom post type slug.
+	 */
+	const RESERVED_TERMS = [ ];
 
 	/**
 	 * Instantiate a CustomPostType object.
@@ -48,6 +55,11 @@ abstract class AbstractContentType implements Registerable {
 	 *                                        processed.
 	 */
 	public function __construct( ConfigInterface $config ) {
+		$this->loadLocalization(
+			'bn-custom-content',
+			__DIR__ . '/../languages'
+		);
+
 		$defaults = ConfigFactory::createSubConfig(
 			__DIR__ . '/../config/defaults.php',
 			get_class( $this )
@@ -97,20 +109,18 @@ abstract class AbstractContentType implements Registerable {
 	 * @throws ReservedTermException If the slug is a reserved term.
 	 */
 	public function register( $args = [ ] ) {
-		foreach ( $this->getConfigKeys() as $cpt ) {
+		foreach ( $this->getConfigKeys() as $slug ) {
 
-			if ( $this->isReservedTerm( $cpt ) ) {
-				throw new ReservedTermException(
-					'Cannot register content type for reserved term: ' . $cpt
-				);
+			if ( $this->isReservedTerm( $slug ) ) {
+				throw new ReservedTermException( $slug );
 			}
 
-			if ( static::DEFAULTS === $cpt ) {
+			if ( static::DEFAULTS === $slug ) {
 				continue;
 			}
 
-			$argsCollection = $this->prepareArguments( $cpt, $args );
-			$this->doRegistration( $cpt, $argsCollection );
+			$argsCollection = $this->prepareArguments( $slug, $args );
+			$this->doRegistration( $slug, $argsCollection );
 		}
 	}
 
@@ -122,7 +132,9 @@ abstract class AbstractContentType implements Registerable {
 	 * @param string $slug Slug to check.
 	 * @return bool Whether the term is reserved.
 	 */
-	abstract protected function isReservedTerm( $slug );
+	protected function isReservedTerm( $slug ) {
+		return in_array( $slug, static::RESERVED_TERMS, true );
+	}
 
 	/**
 	 * Prepare the arguments and return a Collection of arguments.

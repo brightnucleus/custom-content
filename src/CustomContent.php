@@ -20,6 +20,7 @@ use BrightNucleus\Config\Exception\FailedToProcessConfigException;
 use BrightNucleus\Contract\Registerable;
 use BrightNucleus\CustomContent\Exception\InvalidContentTypeException;
 use BrightNucleus\CustomContent\Exception\ReservedTermException;
+use BrightNucleus\Localization\LocalizationTrait;
 
 /**
  * Class CustomContent.
@@ -31,6 +32,7 @@ use BrightNucleus\CustomContent\Exception\ReservedTermException;
 class CustomContent implements Registerable {
 
 	use ConfigTrait;
+	use LocalizationTrait;
 
 	/**
 	 * Instantiate a CustomPostType object.
@@ -43,6 +45,11 @@ class CustomContent implements Registerable {
 	 *                                        processed.
 	 */
 	public function __construct( ConfigInterface $config ) {
+		$this->loadLocalization(
+			'bn-custom-content',
+			__DIR__ . '/../languages'
+		);
+
 		$defaults = ConfigFactory::createSubConfig(
 			__DIR__ . '/../config/defaults.php',
 			__NAMESPACE__
@@ -97,9 +104,7 @@ class CustomContent implements Registerable {
 		$class = __NAMESPACE__ . '\\' . $contentType;
 
 		if ( ! class_exists( $class ) ) {
-			throw new InvalidContentTypeException(
-				'Invalid content type found in Config: ' . $contentType
-			);
+			throw new InvalidContentTypeException( $contentType );
 		}
 
 		( new $class( $config ) )->register();

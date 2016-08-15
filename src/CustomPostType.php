@@ -30,9 +30,19 @@ use Doctrine\Common\Collections\Collection;
 class CustomPostType extends AbstractContentType {
 
 	/*
-	 * Key that stores default values.
+	 * Reserved terms that cannot be used as custom post type slug.
 	 */
-	const DEFAULTS = '_cpt_defaults_';
+	const RESERVED_TERMS = [
+		'post',
+		'page',
+		'attachment',
+		'revision',
+		'nav_menu_item',
+		'action',
+		'author',
+		'order',
+		'theme',
+	];
 
 	/**
 	 * Prepare the arguments and return a Collection of arguments.
@@ -207,28 +217,6 @@ class CustomPostType extends AbstractContentType {
 			Message::ELEMENT_SUBMITTED,
 			Message::ELEMENT_DRAFT_UPDATED,
 		];
-	}
-
-	/**
-	 * Check whether a slug is a reserved term.
-	 *
-	 * @since 0.1.0
-	 *
-	 * @param string $slug Slug to check.
-	 * @return bool Whether the term is reserved.
-	 */
-	protected function isReservedTerm( $slug ) {
-		return in_array( $slug, [
-			'post',
-			'page',
-			'attachment',
-			'revision',
-			'nav_menu_item',
-			'action',
-			'author',
-			'order',
-			'theme',
-		], true );
 	}
 
 	/**

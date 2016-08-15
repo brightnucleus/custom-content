@@ -24,4 +24,18 @@ use BrightNucleus\Exception\InvalidArgumentException;
  */
 class InvalidContentTypeException extends InvalidArgumentException implements CustomContentException {
 
+	/**
+	 * Instantiate a InvalidContentTypeException object.
+	 *
+	 * @since 0.1.2
+	 *
+	 * @param string $contentType The custom content type that was requested.
+	 */
+	public function __construct( $contentType ) {
+		$message = sprintf(
+			'Invalid content type found in Config: %s',
+			$contentType
+		);
+		parent::__construct( $message );
+	}
 }

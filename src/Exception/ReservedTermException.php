@@ -24,4 +24,18 @@ use BrightNucleus\Exception\InvalidArgumentException;
  */
 class ReservedTermException extends InvalidArgumentException implements CustomContentException {
 
+	/**
+	 * Instantiate a ReservedTermException object.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param string $slug The slug of the custom content to be registered.
+	 */
+	public function __construct( $slug ) {
+		$message = sprintf(
+			'Cannot register content type for reserved term: %s',
+			$slug
+		);
+		parent::__construct( $message );
+	}
 }

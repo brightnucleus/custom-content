@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ff106102df92e212140e6ffc4d15caf5",
-    "content-hash": "b89c42382955f947f06a3712943bc67f",
+    "hash": "c6d1e6a698e2d20960e9a25883c41e32",
+    "content-hash": "09795983c64605b57e01ba7b2738b212",
     "packages": [
         {
             "name": "brightnucleus/config",
@@ -121,6 +121,39 @@
             ],
             "description": "Exceptions shared across Bright Nucleus components.",
             "time": "2016-06-08 09:20:26"
+        },
+        {
+            "name": "brightnucleus/localization",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/brightnucleus/localization.git",
+                "reference": "8705bcccf54f4b19d50ed871364d6a6c2b8cffcd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/brightnucleus/localization/zipball/8705bcccf54f4b19d50ed871364d6a6c2b8cffcd",
+                "reference": "8705bcccf54f4b19d50ed871364d6a6c2b8cffcd",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "BrightNucleus\\Localization\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alain Schlesser",
+                    "email": "alain.schlesser@gmail.com"
+                }
+            ],
+            "description": "WordPress localization for Bright Nucleus components.",
+            "time": "2016-08-15 08:28:21"
         },
         {
             "name": "doctrine/collections",
