@@ -33,6 +33,7 @@ class Argument {
 	const LABEL                 = 'label';
 	const LABELS                = 'labels';
 	const IS_PUBLIC             = 'public'; // Inconsistent naming to avoid PHP error.
+	const PUBLICLY_QUERYABLE    = 'publicly_queryable';
 	const SHOW_UI               = 'show_ui';
 	const SHOW_IN_MENU          = 'show_in_menu';
 	const SHOW_IN_NAV_MENUS     = 'show_in_nav_menus';
