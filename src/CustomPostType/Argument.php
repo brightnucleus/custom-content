@@ -61,6 +61,13 @@ class Argument {
 	const _EDIT_LINK            = '_edit_link';
 
 	/*
+	 * Additional block editor registration arguments.
+	 * See https://wordpress.org/gutenberg/handbook/designers-developers/developers/block-api/block-templates/#custom-post-types
+	 */
+	const TEMPLATE      = 'template';
+	const TEMPLATE_LOCK = 'template_lock';
+	
+	/*
 	 * Bright Nucleus Custom Post Type component additional arguments.
 	 */
 
