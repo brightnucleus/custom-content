@@ -119,7 +119,7 @@ abstract class AbstractContentType implements Registerable {
 				continue;
 			}
 
-			$argsCollection = $this->prepareArguments( $slug, $args );
+			$argsCollection = $this->prepareArguments( $slug, (array) $args );
 			$this->doRegistration( $slug, $argsCollection );
 		}
 	}
