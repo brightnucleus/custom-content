@@ -39,6 +39,7 @@ class Argument {
 	const SHOW_IN_NAV_MENUS     = 'show_in_nav_menus';
 	const SHOW_TAGCLOUD         = 'show_tagcloud';
 	const SHOW_IN_QUICK_EDIT    = 'show_in_quick_edit';
+    const SHOW_IN_REST          = 'show_in_rest';
 	const META_BOX_CB           = 'meta_box_cb';
 	const SHOW_ADMIN_COLUMN     = 'show_admin_column';
 	const DESCRIPTION           = 'description';
