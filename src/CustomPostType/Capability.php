@@ -18,7 +18,7 @@ namespace BrightNucleus\CustomContent\CustomPostType;
  *
  * Constants to use for setting the custom post type's capabilities.
  *
- * @since   0.1.0
+ * @since   0.1.8
  *
  * @package BrightNucleus\CustomContent\CustomPostType
  * @author  Alain Schlesser <alain.schlesser@gmail.com>
