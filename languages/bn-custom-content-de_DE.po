@@ -6,12 +6,13 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2016-08-15 10:02+0200\n"
-"Language-Team: Alain Schlesser <alain.schlesser@gmail.com>\n"
-"X-Generator: Poedit 1.8.8\n"
+"PO-Revision-Date: 2022-02-24 15:59+0000\n"
+"Language-Team: German\n"
+"X-Generator: Loco https://localise.biz/\n"
 "Last-Translator: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Language: de_DE\n"
+"X-Loco-Version: 2.5.8; wp-5.9"
 
 #: config/defaults.php:32
 msgctxt "post type upper case singular name"
@@ -58,31 +59,31 @@ msgstr "Hinzufügen"
 #. plural.
 #: config/defaults.php:49 config/defaults.php:184
 msgid "Add New %1$s"
-msgstr "%1$s Hinzufügen"
+msgstr "%1$s hinzufügen"
 
 #. Translators: %1$s uc singular, %2$s lc singular, %3$s uc plural, %4$s lc
 #. plural.
 #: config/defaults.php:51 config/defaults.php:178
 msgid "Edit %1$s"
-msgstr "%1$s Bearbeiten"
+msgstr "%1$s bearbeiten"
 
 #. Translators: %1$s uc singular, %2$s lc singular, %3$s uc plural, %4$s lc
 #. plural.
 #: config/defaults.php:53
 msgid "New %1$s"
-msgstr "Erstelle %1$s"
+msgstr "Neuer %1$s"
 
 #. Translators: %1$s uc singular, %2$s lc singular, %3$s uc plural, %4$s lc
 #. plural.
 #: config/defaults.php:55 config/defaults.php:180
 msgid "View %1$s"
-msgstr "%1$s Betrachten"
+msgstr "%1$s betrachten"
 
 #. Translators: %1$s uc singular, %2$s lc singular, %3$s uc plural, %4$s lc
 #. plural.
 #: config/defaults.php:57 config/defaults.php:192
 msgid "Search %3$s"
-msgstr "%3$s Suchen"
+msgstr "%3$s suchen"
 
 #. Translators: %1$s uc singular, %2$s lc singular, %3$s uc plural, %4$s lc
 #. plural.
@@ -94,13 +95,13 @@ msgstr "%3$s nicht gefunden."
 #. plural.
 #: config/defaults.php:61
 msgid "No %4$s found in Trash."
-msgstr "%3$s nicht im Mülleimer gefunden."
+msgstr "Keine %3$s im Papierkorb gefunden."
 
 #. Translators: %1$s uc singular, %2$s lc singular, %3$s uc plural, %4$s lc
 #. plural.
 #: config/defaults.php:63 config/defaults.php:190
 msgid "Parent %1$s:"
-msgstr "Eltern-%1$s"
+msgstr "Übergeordnete %1$s:"
 
 #. Translators: %1$s uc singular, %2$s lc singular, %3$s uc plural, %4$s lc
 #. plural.
@@ -112,7 +113,7 @@ msgstr "Alle %3$s"
 #. plural.
 #: config/defaults.php:67
 msgid "%1$s Archives"
-msgstr "%1$s Archive"
+msgstr "%1$ss-Archive"
 
 #. Translators: %1$s uc singular, %2$s lc singular, %3$s uc plural, %4$s lc
 #. plural.
@@ -124,19 +125,19 @@ msgstr "In %2$s einfügen"
 #. plural.
 #: config/defaults.php:71
 msgid "Uploaded to this %2$s"
-msgstr "Zu %2$s hochgeladen"
+msgstr "Zu diesem %2$s hochgeladen"
 
 #. Translators: %1$s uc singular, %2$s lc singular, %3$s uc plural, %4$s lc
 #. plural.
 #: config/defaults.php:73
 msgid "Featured Image"
-msgstr "Primäres Beitragsbild"
+msgstr "Beitragsbild"
 
 #. Translators: %1$s uc singular, %2$s lc singular, %3$s uc plural, %4$s lc
 #. plural.
 #: config/defaults.php:75
 msgid "Set featured image"
-msgstr "Beitragsbild setzen"
+msgstr "Beitragsbild festlegen"
 
 #. Translators: %1$s uc singular, %2$s lc singular, %3$s uc plural, %4$s lc
 #. plural.
@@ -148,7 +149,7 @@ msgstr "Beitragsbild entfernen"
 #. plural.
 #: config/defaults.php:79
 msgid "Use as featured image"
-msgstr "Als Beitragsbild verwenden"
+msgstr "Als Beitragsbild nutzen"
 
 #. Translators: %1$s uc singular, %2$s lc singular, %3$s uc plural, %4$s lc
 #. plural.
@@ -161,19 +162,19 @@ msgstr "%3$s"
 #. plural.
 #: config/defaults.php:83
 msgid "Filter %4$s list"
-msgstr "%4$s Filterliste"
+msgstr "%4$sliste filtern"
 
 #. Translators: %1$s uc singular, %2$s lc singular, %3$s uc plural, %4$s lc
 #. plural.
 #: config/defaults.php:85
 msgid "%3$s list navigation"
-msgstr "%3$s Listen-Navigation"
+msgstr "Navigation der %3$sliste"
 
 #. Translators: %1$s uc singular, %2$s lc singular, %3$s uc plural, %4$s lc
 #. plural.
 #: config/defaults.php:87
 msgid "%3$s list"
-msgstr "%3$s Liste"
+msgstr "%3$sliste"
 
 #. Translators: %1$s uc singular, %2$s lc singular, %3$s uc plural, %4$s lc
 #. plural.
@@ -204,7 +205,7 @@ msgstr "Benutzerdefiniertes Feld gelöscht."
 #. plural, %5$s date and time of the revision.
 #: config/defaults.php:107
 msgid "%1$s restored to revision from %5$s."
-msgstr "%1$s Revision vom %5$s wiederhergestellt."
+msgstr "%1$s-Revision vom %5$s wiederhergestellt."
 
 #. Translators: %1$s uc singular, %2$s lc singular, %3$s uc plural, %4$s lc
 #. plural.
@@ -222,7 +223,7 @@ msgstr "%1$s gespeichert."
 #. plural.
 #: config/defaults.php:113
 msgid "%1$s submitted."
-msgstr "%1$s eingereicht"
+msgstr "%1$s eingereicht."
 
 #. Translators: %1$s uc singular, %2$s lc singular, %3$s uc plural, %4$s lc
 #. plural, %5$s scheduled date.
@@ -234,39 +235,39 @@ msgstr "%1$s geplant für: %5$s."
 #. plural.
 #: config/defaults.php:117
 msgid "%1$s draft updated."
-msgstr "%1$s Entwurf aktualisiert."
+msgstr "%1$s-Entwurf aktualisiert."
 
 #. Translators: %1$s uc singular, %2$s lc singular, %3$s uc plural, %4$s lc
 #. plural.
 #: config/defaults.php:126
 msgid "View %2$s"
-msgstr "%1$s Betrachten"
+msgstr "%1$s betrachten"
 
 #. Translators: %1$s uc singular, %2$s lc singular, %3$s uc plural, %4$s lc
 #. plural.
 #: config/defaults.php:128
 msgid "Preview %2$s"
-msgstr "%1$s Vorschau Betrachten"
+msgstr "%1$s-Vorschau betrachten"
 
 #: config/defaults.php:159
 msgctxt "taxonomy upper case singular name"
 msgid "Taxonomy"
-msgstr "Klassifizierung"
+msgstr "Taxonomie"
 
 #: config/defaults.php:160
 msgctxt "taxonomy lower case singular name"
 msgid "taxonomy"
-msgstr "Klassifizierung"
+msgstr "taxonomie"
 
 #: config/defaults.php:161
 msgctxt "taxonomy upper case plural name"
 msgid "Taxonomies"
-msgstr "Klassifizierungen"
+msgstr "Taxonomien"
 
 #: config/defaults.php:162
 msgctxt "taxonomy lower case plural name"
 msgid "taxonomies"
-msgstr "Klassifizierungen"
+msgstr "taxonomien"
 
 #. Translators: %1$s uc singular, %2$s lc singular, %3$s uc plural, %4$s lc
 #. plural.
@@ -293,19 +294,19 @@ msgstr "%3$s"
 #. plural.
 #: config/defaults.php:182
 msgid "Update %1$s"
-msgstr "%1$s Aktualisieren"
+msgstr "%1$s aktualisieren"
 
 #. Translators: %1$s uc singular, %2$s lc singular, %3$s uc plural, %4$s lc
 #. plural.
 #: config/defaults.php:186
 msgid "New %1$s Name"
-msgstr "Neuer %1$s Name"
+msgstr "Neuer %1$sname"
 
 #. Translators: %1$s uc singular, %2$s lc singular, %3$s uc plural, %4$s lc
 #. plural.
 #: config/defaults.php:188
 msgid "Parent %1$s"
-msgstr "Eltern-%1$s"
+msgstr "Übergeordnete %1$s"
 
 #. Translators: %1$s uc singular, %2$s lc singular, %3$s uc plural, %4$s lc
 #. plural.
@@ -317,7 +318,7 @@ msgstr "Beliebte %3$s"
 #. plural.
 #: config/defaults.php:196
 msgid "Separate %4$s with commas"
-msgstr "%3$s mit Kommas trennen"
+msgstr "%3$s durch Kommas trennen"
 
 #. Translators: %1$s uc singular, %2$s lc singular, %3$s uc plural, %4$s lc
 #. plural.
@@ -329,7 +330,7 @@ msgstr "%4$s hinzugügen oder entfernen"
 #. plural.
 #: config/defaults.php:200
 msgid "Choose from the most used %4$s"
-msgstr "Aus meistverwendeten %4$s auswählen"
+msgstr "Wähle aus den meistgenutzten %4$s"
 
 #: src/CustomPostType/ArgumentCollection.php:110
 msgid "M j, Y @ G:i"
