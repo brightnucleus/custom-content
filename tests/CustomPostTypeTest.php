@@ -11,15 +11,14 @@
  * @copyright 2016 Alain Schlesser, Bright Nucleus
  */
 
-namespace BrightNucleus\CustomContent;
+namespace BrightNucleus\CustomContent\Tests;
 
 use BrightNucleus\CustomContent\CustomPostType\Argument;
 use BrightNucleus\CustomContent\CustomPostType\Message;
 use BrightNucleus\CustomContent\CustomPostType\Name;
 use BrightNucleus\CustomContent\Exception\ReservedTermException;
-use PHPUnit_Framework_TestCase;
 use BrightNucleus\Config\ConfigFactory;
-use Brain\Monkey;
+use BrightNucleus\CustomContent\CustomPostType;
 use Brain\Monkey\Functions;
 use Mockery;
 
@@ -30,22 +29,13 @@ use Mockery;
  *
  * @author Alain Schlesser <alain.schlesser@gmail.com>
  */
-class CustomPostTypeTest extends PHPUnit_Framework_TestCase {
-
-	protected function setUp() {
-		parent::setUp();
-		Monkey::setUpWP();
-	}
-
-	protected function tearDown() {
-		Monkey::tearDownWP();
-		parent::tearDown();
-	}
+class CustomPostTypeTest extends TestCase {
 
 	/**
 	 * Test whether the class can be instantiated.
 	 *
 	 * @since 0.1.0
+	 * @covers \BrightNucleus\CustomContent\CustomPostType::__construct
 	 */
 	public function testClassInstantiation() {
 		$config = ConfigFactory::create( [ ] );
@@ -60,6 +50,8 @@ class CustomPostTypeTest extends PHPUnit_Framework_TestCase {
 	 * Test whether a post type can be registered.
 	 *
 	 * @since 0.1.0
+	 * @covers \BrightNucleus\CustomContent\CustomPostType::register
+	 * @covers \BrightNucleus\CustomContent\CustomPostType::registerMessages
 	 */
 	public function testRegistration() {
 		$config = ConfigFactory::create( [
@@ -74,13 +66,22 @@ class CustomPostTypeTest extends PHPUnit_Framework_TestCase {
 		] );
 		$object = new CustomPostType( $config );
 
-		Functions::expect( 'register_post_type' )
+		Functions\expect( 'register_post_type' )
 		         ->once()
 		         ->with(
 			         'test',
 			         Mockery::type( 'array' )
 		         )
 		         ->andReturn( true );
+		
+		Functions\expect( 'has_filter' )
+		         ->once()
+		         ->with(
+			         'post_updated_messages',
+			         [ $object, 'messages_for_test' ]
+		         )
+		         ->andReturn( true );
+		
 		$object->register();
 		$this->assertTrue(
 			has_filter(
@@ -94,6 +95,8 @@ class CustomPostTypeTest extends PHPUnit_Framework_TestCase {
 	 * Test whether a post type can be registered.
 	 *
 	 * @since 0.1.0
+	 * @covers \BrightNucleus\CustomContent\CustomPostType::register
+	 * @covers \BrightNucleus\CustomContent\AbstractContentType::checkReservedTerms
 	 */
 	public function testReservedTermThrowsException() {
 		$config = ConfigFactory::create( [
@@ -112,10 +115,16 @@ class CustomPostTypeTest extends PHPUnit_Framework_TestCase {
 			$object
 		);
 
-		$this->setExpectedException( ReservedTermException::class );
+		$this->expectException( ReservedTermException::class );
 		$object->register();
 	}
 
+	/**
+	 * Test whether the messages filter works correctly.
+	 *
+	 * @covers \BrightNucleus\CustomContent\CustomPostType::__call
+	 * @covers \BrightNucleus\CustomContent\CustomPostType::registerMessages
+	 */
 	public function testMessagesFilter() {
 		$config = ConfigFactory::create( [
 			'test' => [
@@ -128,7 +137,7 @@ class CustomPostTypeTest extends PHPUnit_Framework_TestCase {
 			],
 		] );
 		$object = new CustomPostType( $config );
-		Functions::expect( 'register_post_type' )
+		Functions\expect( 'register_post_type' )
 		         ->once()
 		         ->andReturn( true );
 		$object->register();
@@ -142,22 +151,22 @@ class CustomPostTypeTest extends PHPUnit_Framework_TestCase {
 
 		$messages = $this->get_dummy_messages_data( 'test' );
 
-		Functions::expect( 'get_post' )
+		Functions\expect( 'get_post' )
 		         ->twice()
 		         ->andReturn( $post );
-		Functions::expect( 'get_post_type_object' )
+		Functions\expect( 'get_post_type_object' )
 		         ->once()
 		         ->andReturn( $post_type_object );
-		Functions::expect( 'date_i18n' )
+		Functions\expect( 'date_i18n' )
 		         ->once()
 		         ->andReturn( 'DATE' );
-		Functions::expect( 'get_permalink' )
+		Functions\expect( 'get_permalink' )
 		         ->once()
 		         ->andReturn( 'https://www.google.com/' );
-		Functions::expect( 'esc_url' )
+		Functions\expect( 'esc_url' )
 		         ->times( 5 )
 		         ->andReturn( 'https://www.google.com/' );
-		Functions::expect( 'add_query_arg' )
+		Functions\expect( 'add_query_arg' )
 		         ->twice();
 		$messages = $object->messages_for_test( $messages );
 		$this->assertTrue( array_key_exists( 'test', $messages ) );

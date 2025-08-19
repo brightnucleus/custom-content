@@ -11,15 +11,14 @@
  * @copyright 2016 Alain Schlesser, Bright Nucleus
  */
 
-namespace BrightNucleus\CustomContent;
+namespace BrightNucleus\CustomContent\Tests;
 
 use BrightNucleus\CustomContent\CustomPostType\Argument as CPTArgument;
 use BrightNucleus\CustomContent\CustomPostType\Name as CPTName;
 use BrightNucleus\CustomContent\CustomTaxonomy\Argument as TaxArgument;
 use BrightNucleus\CustomContent\CustomTaxonomy\Name as TaxName;
-use PHPUnit_Framework_TestCase;
+use BrightNucleus\CustomContent\CustomContent;
 use BrightNucleus\Config\ConfigFactory;
-use Brain\Monkey;
 use Brain\Monkey\Functions;
 use Mockery;
 
@@ -30,22 +29,13 @@ use Mockery;
  *
  * @author Alain Schlesser <alain.schlesser@gmail.com>
  */
-class CustomContentTest extends PHPUnit_Framework_TestCase {
-
-	protected function setUp() {
-		parent::setUp();
-		Monkey::setUpWP();
-	}
-
-	protected function tearDown() {
-		Monkey::tearDownWP();
-		parent::tearDown();
-	}
+class CustomContentTest extends TestCase {
 
 	/**
 	 * Test whether the class can be instantiated.
 	 *
 	 * @since 0.1.0
+	 * @covers \BrightNucleus\CustomContent\CustomContent::__construct
 	 */
 	public function testClassInstantiation() {
 		$config = ConfigFactory::create( [ ] );
@@ -60,6 +50,7 @@ class CustomContentTest extends PHPUnit_Framework_TestCase {
 	 * Test whether a post type can be registered.
 	 *
 	 * @since 0.1.0
+	 * @covers \BrightNucleus\CustomContent\CustomContent::register
 	 */
 	public function testRegistration() {
 		$config = ConfigFactory::create( [
@@ -92,13 +83,13 @@ class CustomContentTest extends PHPUnit_Framework_TestCase {
 			$object
 		);
 
-		Functions::expect( 'register_post_type' )
+		Functions\expect( 'register_post_type' )
 		         ->once()
 		         ->with(
 			         'cpt',
 			         Mockery::type( 'array' )
 		         );
-		Functions::expect( 'register_taxonomy' )
+		Functions\expect( 'register_taxonomy' )
 		         ->once()
 		         ->with(
 			         'tax',

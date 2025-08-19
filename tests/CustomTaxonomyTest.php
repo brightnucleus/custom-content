@@ -11,14 +11,13 @@
  * @copyright 2016 Alain Schlesser, Bright Nucleus
  */
 
-namespace BrightNucleus\CustomContent;
+namespace BrightNucleus\CustomContent\Tests;
 
 use BrightNucleus\CustomContent\CustomTaxonomy\Argument;
 use BrightNucleus\CustomContent\CustomTaxonomy\Name;
 use BrightNucleus\CustomContent\Exception\ReservedTermException;
-use PHPUnit_Framework_TestCase;
 use BrightNucleus\Config\ConfigFactory;
-use Brain\Monkey;
+use BrightNucleus\CustomContent\CustomTaxonomy;
 use Brain\Monkey\Functions;
 use Mockery;
 
@@ -29,22 +28,13 @@ use Mockery;
  *
  * @author Alain Schlesser <alain.schlesser@gmail.com>
  */
-class CustomTaxonomyTest extends PHPUnit_Framework_TestCase {
-
-	protected function setUp() {
-		parent::setUp();
-		Monkey::setUpWP();
-	}
-
-	protected function tearDown() {
-		Monkey::tearDownWP();
-		parent::tearDown();
-	}
+class CustomTaxonomyTest extends TestCase {
 
 	/**
 	 * Test whether the class can be instantiated.
 	 *
 	 * @since 0.1.0
+	 * @covers \BrightNucleus\CustomContent\CustomTaxonomy::__construct
 	 */
 	public function testClassInstantiation() {
 		$config = ConfigFactory::create( [ ] );
@@ -59,6 +49,7 @@ class CustomTaxonomyTest extends PHPUnit_Framework_TestCase {
 	 * Test whether a post type can be registered.
 	 *
 	 * @since 0.1.0
+	 * @covers \BrightNucleus\CustomContent\CustomTaxonomy::register
 	 */
 	public function testRegistration() {
 		$config = ConfigFactory::create( [
@@ -78,7 +69,7 @@ class CustomTaxonomyTest extends PHPUnit_Framework_TestCase {
 			$object
 		);
 
-		Functions::expect( 'register_taxonomy' )
+		Functions\expect( 'register_taxonomy' )
 		         ->once()
 		         ->with(
 			         'test',
@@ -92,6 +83,8 @@ class CustomTaxonomyTest extends PHPUnit_Framework_TestCase {
 	 * Test whether a post type can be registered.
 	 *
 	 * @since 0.1.0
+	 * @covers \BrightNucleus\CustomContent\CustomTaxonomy::register
+	 * @covers \BrightNucleus\CustomContent\AbstractContentType::checkReservedTerms
 	 */
 	public function testReservedTermThrowsException() {
 		$config = ConfigFactory::create( [
@@ -110,7 +103,7 @@ class CustomTaxonomyTest extends PHPUnit_Framework_TestCase {
 			$object
 		);
 
-		$this->setExpectedException( ReservedTermException::class );
+		$this->expectException( ReservedTermException::class );
 		$object->register();
 	}
 }

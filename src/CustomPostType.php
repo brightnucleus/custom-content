@@ -29,6 +29,13 @@ use Doctrine\Common\Collections\Collection;
  */
 class CustomPostType extends AbstractContentType {
 
+	/**
+	 * Storage for message filter callbacks.
+	 *
+	 * @var array
+	 */
+	protected $messageFilters = [];
+
 	/*
 	 * Reserved terms that cannot be used as custom post type slug.
 	 */
@@ -86,9 +93,9 @@ class CustomPostType extends AbstractContentType {
 	 * @param ArgumentCollection $args Collection of arguments.
 	 */
 	protected function registerMessages( $cpt, ArgumentCollection $args ) {
-		$method_name = "messages_for_${cpt}";
+		$method_name = "messages_for_{$cpt}";
 
-		$this->$method_name = function ( $messages ) use ( $cpt, $args ) {
+		$this->messageFilters[$method_name] = function ( $messages ) use ( $cpt, $args ) {
 
 			$args->prepareMessages();
 
@@ -231,6 +238,9 @@ class CustomPostType extends AbstractContentType {
 	 * @throws BadMethodCallException An undefined callback was invoked.
 	 */
 	public function __call( $method, $args ) {
+		if ( isset( $this->messageFilters[$method] ) && is_callable( $this->messageFilters[$method] ) ) {
+			return call_user_func_array( $this->messageFilters[$method], $args );
+		}
 		if ( is_callable( array( $this, $method ) ) ) {
 			return call_user_func_array( $this->$method, $args );
 		}
